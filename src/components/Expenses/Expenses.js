@@ -8,18 +8,17 @@ import './Expenses.css';
 
 export const Expenses = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState('2019');
+  const filteredItems = expenses.filter(expense => expense.date.getFullYear().toString() === filteredYear);
 
   const yearFilterSelectedHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
-
-    console.log(filteredYear);
   }
 
   return (
     <>
       <Card className="expenses">
         <ExpensesFilter selected={filteredYear} onYearFilterSelected={yearFilterSelectedHandler} />
-          {expenses.map((expense) => {
+        {filteredItems && filteredItems.map((expense) => {
             return (
             <ExpenseItem 
               key={expense.id}
@@ -28,8 +27,7 @@ export const Expenses = ({ expenses }) => {
               date={expense.date}
             />
           )
-          })
-          }
+          })}
       </Card>
     </>
   );
