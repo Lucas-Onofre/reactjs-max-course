@@ -4,7 +4,7 @@ import ExpenseForm from './ExpenseForm';
 
 import './NewExpanse.css';
 
-const NewExpense = (props) => {
+const NewExpense = ({ onAddExpanse }) => {
   const [isShowingForm, setIsShowingForm] = useState(false);
 
   const saveExpenseDataHandler = (enteredExpenseData) =>{
@@ -13,7 +13,7 @@ const NewExpense = (props) => {
       id: Math.random().toString()
     };
     
-    props.onAddExpanse(expenseData);
+    onAddExpanse(expenseData);
   }
 
   const handleDisplayForm = () =>{
